@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nekoshackdev — Portfolio</title>
+<link rel="icon" type="image/jpeg" href="new-avatar.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Pacifico&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+@font-face{font-family:'Ndot57';src:url('Ndot57-Regular.otf') format('opentype');font-weight:400;font-style:normal;font-display:swap}
+:root{--bg:#000;--text:#fff;--muted:#b5b5b5;--accent:#8b5cf6;--accent-2:#a78bfa}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+#stars{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;background:#000}
+main,footer{position:relative;z-index:1}
+body{background:var(--bg);position:relative;color:var(--text);font-family:'Inter','Roboto',sans-serif;line-height:1.6;overflow-x:hidden}
+.container{width:min(1100px,100% - 40px);margin-inline:auto}
+
+/* Header */
+header{position:sticky;top:0;z-index:10;background:rgba(0,0,0,.6);backdrop-filter:blur(8px)}
+header .container{display:flex;justify-content:space-between;align-items:center;padding:16px 0}
+.logo{display:inline-flex;align-items:center;gap:10px;font-family:'Ndot57','Pacifico',monospace;color:var(--accent);font-size:1.7rem;line-height:1;text-decoration:none;transition:color .2s}
+.logo-avatar{width:38px;height:38px;border-radius:50%;object-fit:cover;object-position:center;background:#fff;flex-shrink:0;border:2px solid var(--accent);display:block}
+.logo i{font-size:1.6rem;line-height:1}
+.logo:hover{color:var(--accent-2)}
+nav{display:flex;gap:28px}
+nav a{color:var(--text);text-decoration:none;font-size:.95rem;transition:color .2s}
+nav a:hover{color:var(--accent-2)}
+
+/* About */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding:90px 0 60px}
+.about h2,.skills h2{font-size:2.2rem;font-weight:800;margin-bottom:20px}
+.about p{color:var(--muted);margin-bottom:18px;max-width:500px}
+.avatar{width:min(100%,420px);aspect-ratio:1/1;border-radius:50%;background:#fff;overflow:hidden;justify-self:end;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.avatar img{width:100%;height:100%;object-fit:cover;object-position:center;border-radius:50%;display:block}
+
+/* Skills */
+.skills{padding:30px 0 80px;display:flex;justify-content:space-between;align-items:center;gap:48px}
+.skills-main{flex:1 1 auto;min-width:0}
+.skills-photo{width:min(100%,340px);aspect-ratio:1/1;border-radius:50%;object-fit:cover;object-position:center;flex-shrink:0;display:block}
+.skill-list{max-width:640px}
+.skills h2{font-size:1.8rem}
+.skill{display:flex;align-items:center;gap:18px;margin-bottom:22px}
+.skill i{font-size:2rem;width:44px;text-align:left;flex-shrink:0}
+.fa-python{color:#4b8bbe}.fa-cube{color:#f5792a}.fa-film{color:#e8567a}.fa-code{color:#fff}
+.bar{flex:1;height:10px;background:#222;border-radius:6px;overflow:hidden}
+.bar span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent-2));border-radius:6px;transition:width 1.6s cubic-bezier(.22,.8,.3,1)}
+.pct{width:3.2rem;text-align:left;font-weight:800;font-variant-numeric:tabular-nums;flex-shrink:0}
+
+/* Project statement */
+.statement{display:flex;justify-content:space-between;align-items:center;gap:32px;padding:50px 0}
+.statement h2{font-size:clamp(1.6rem,3.2vw,2.6rem);font-weight:800;line-height:1.2}
+.statement img{width:min(100%,260px);aspect-ratio:1;object-fit:cover;border-radius:8px}
+
+/* Видео-фон + футер поверх */
+.video-hero{position:relative;width:100%;background:#000;overflow:hidden}
+.video-hero .bg-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.video-hero::before{content:"";position:absolute;top:0;left:0;right:0;height:50%;background:linear-gradient(to bottom,#000 0%,transparent 100%);z-index:1;pointer-events:none}
+footer{position:relative;z-index:2;background-color:rgba(0,0,0,.7);padding:clamp(48px,8vw,90px) 0;text-align:center;backdrop-filter:blur(2px)}
+.socials{display:flex;justify-content:center;gap:28px;flex-wrap:wrap;margin-bottom:14px}
+.socials a{color:#fff;font-size:1.9rem;transition:transform .25s,color .25s}
+.socials a:hover{color:var(--accent);transform:scale(1.25) translateY(-3px)}
+footer small{color:#aaa}
+
+/* Mobile */
+@media(max-width:768px){
+  header .container{flex-direction:column;gap:8px}
+  .about{grid-template-columns:1fr;padding-top:50px;text-align:left}
+  .avatar{order:-1;width:min(100%,300px);justify-self:center}
+  .statement{flex-direction:column;align-items:flex-start}
+  .skill i{font-size:1.6rem;width:34px}
+  .skills{flex-direction:column;align-items:flex-start}
+  .skills-main{width:100%}
+  .skills-photo{align-self:center;width:min(100%,300px)}
+}
+@media(prefers-reduced-motion:reduce){.bar span{transition:none}}
+</style>
+</head>
+<body>
+
+<canvas id="stars" aria-hidden="true"></canvas>
+
+<header>
+  <div class="container">
+    <a href="https://github.com/ваш_ник" class="logo" target="_blank" rel="noopener noreferrer"><img class="logo-avatar" src="new-avatar.jpg" alt=""><i class="fa-brands fa-github"></i><span>Nekoshackdev</span></a>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section id="about" class="container about">
+    <div>
+      <h2>About Me</h2>
+      <p>Привет! Я ученик 10 класса, увлечённый созданием digital-продуктов. Осваиваю вёрстку сайтов, 3D-моделирование и дизайн UI-интерфейсов. Мне нравится превращать идеи в работающие макеты: от продуманного интерфейса до объёмной модели. Каждый проект — это возможность прокачать навыки и найти новые решения.</p>
+      <p>Сейчас активно развиваюсь в веб-разработке и дизайне, собираю портфолио и открыт к интересным задачам, стажировкам и сотрудничеству.</p>
+    </div>
+    <div class="avatar">
+      <img src="new-avatar.jpg" alt="Пиксельный кот — аватар">
+    </div>
+  </section>
+
+  <section id="skills" class="container skills">
+    <div class="skills-main">
+    <h2>Skills &amp; Technologies</h2>
+    <div class="skill-list">
+    <div class="skill"><i class="fa-brands fa-python"></i><div class="bar"><span data-value="68"></span></div><span class="pct">0%</span></div>
+    <div class="skill"><i class="fa-solid fa-code"></i><div class="bar"><span data-value="68"></span></div><span class="pct">0%</span></div>
+    <div class="skill"><i class="fa-solid fa-cube"></i><div class="bar"><span data-value="68"></span></div><span class="pct">0%</span></div>
+    <div class="skill"><i class="fa-solid fa-film"></i><div class="bar"><span data-value="68"></span></div><span class="pct">0%</span></div>
+    </div>
+    </div>
+    <img class="skills-photo" src="desktopcat.jpg" alt="Кот за ноутбуком">
+  </section>
+
+  <section id="projects" class="container statement">
+    <h2>Сайт сделан для защиты проекта по информатике</h2>
+    <img src="cat-in-suit.jpg" alt="Кот в деловом костюме с портфелем">
+  </section>
+
+  <section class="video-hero">
+    <video class="bg-video" autoplay muted loop playsinline>
+      <source src="footer-video.mp4" type="video/mp4">
+    </video>
+
+    <footer id="contact">
+      <div class="container">
+        <div class="socials">
+          <a href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="https://youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="https://twitch.tv/" target="_blank" rel="noopener noreferrer" aria-label="Twitch"><i class="fa-brands fa-twitch"></i></a>
+          <a href="https://t.me/" target="_blank" rel="noopener noreferrer" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+          <a href="https://discord.com/" target="_blank" rel="noopener noreferrer" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        </div>
+        <small>© 2026 Nekoshackdev</small>
+      </div>
+    </footer>
+  </section>
+</main>
+
+<script>
+// Анимированный звёздный фон
+(function () {
+  const canvas = document.getElementById('stars');
+  const ctx = canvas.getContext('2d');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let w, h, dpr, stars = [];
+
+  function init() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    w = window.innerWidth; h = window.innerHeight;
+    canvas.width = w * dpr; canvas.height = h * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const count = Math.min(Math.floor(w * h / 9000), 180);
+    stars = Array.from({ length: count }, () => ({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      r: Math.random() * 1.2 + 0.3,
+      vx: (Math.random() - 0.5) * 0.12,
+      vy: Math.random() * 0.15 + 0.03,
+      a: Math.random() * 0.5 + 0.2,
+      t: Math.random() * Math.PI * 2
+    }));
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+    for (const s of stars) {
+      if (!reduce) {
+        s.x += s.vx; s.y += s.vy; s.t += 0.01;
+        if (s.y > h + 2) { s.y = -2; s.x = Math.random() * w; }
+        if (s.x > w + 2) s.x = -2;
+        if (s.x < -2) s.x = w + 2;
+      }
+      const alpha = s.a * (0.7 + 0.3 * Math.sin(s.t));
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(255,255,255,' + alpha.toFixed(3) + ')';
+      ctx.fill();
+    }
+    if (!reduce) requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', () => { init(); if (reduce) draw(); });
+  init(); draw();
+})();
+</script>
+<script>
+// Плавное заполнение прогресс-баров до 68% при загрузке страницы
+window.addEventListener('load', () => {
+  const ease = t => 1 - Math.pow(1 - t, 3);
+  // двойной rAF гарантирует, что CSS-transition стартует с width:0
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    document.querySelectorAll('.skill').forEach((skill, i) => {
+      const bar = skill.querySelector('.bar span');
+      const label = skill.querySelector('.pct');
+      const target = +bar.dataset.value;
+      const delay = 200 * i, dur = 1600;
+      setTimeout(() => {
+        bar.style.width = target + '%';
+        const start = performance.now();
+        (function tick(now) {
+          const p = Math.min((now - start) / dur, 1);
+          label.textContent = Math.round(target * ease(p)) + '%';
+          if (p < 1) requestAnimationFrame(tick);
+        })(start);
+      }, delay);
+    });
+  }));
+  document.querySelectorAll('video').forEach(v => v.play().catch(() => {}));
+});
+</script>
+</body>
+</html>
